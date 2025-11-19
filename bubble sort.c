@@ -1,36 +1,33 @@
 #include<stdio.h>
+#include<conio.h>
 main()
 {
-    int a[100],i,n,x, mid,beg,end;
-    printf("\n Enter the number of elements you want to enter: ");
-    scanf("%d",&n);
-    printf("\n Enter the elements: ");
-    for(i=0;i<n;i++)
-    {
-        printf("\n Enter element at index %d: ",i);
-        scanf("%d",&a[i]);
-    }
-    printf("\n Enter the element you want to search: ");
-    scanf("%d",&x);
-    beg=0;
-    end=n-1;
-    while(beg<=end)
-    {
-        mid=(beg+end)/2;
-        if(a[mid]==x)
-        {
-            printf("\n Element found at position %d", mid);
-            break;
-        }
-        else if(a[mid]>x)
-        {
-            end=mid-1;
-        }
-        else
-        {
-            beg=mid+1;
-        }
-    }
-    if(beg>end)
-        printf("\n Element Not found");
+	int a[100],i,j,n,temp;
+	printf("\n enter the number of elements you want to enter: ");
+	scanf("%d",&n);
+	printf("\n enter the elements: ");
+	for(i=0;i<n;i++)
+	{
+		printf("\n enter element at index %d: ",i);
+		scanf("%d",&a[i]);
+	}
+	for(i=0;i<n;i++)
+	{
+		for(j=0;j<n-1-i;j++)
+		{
+			if(a[j]>a[j+1])
+			{
+				temp=a[j];
+				a[j]=a[j+1];
+				a[j+1]=temp;
+			}
+		}
+	}
+	printf("\n the elements after sorting are: ");
+	for(i=0;i<n;i++)
+	{
+		printf("%d\t",a[i]);
+	}
+	printf("\n");
+	getch();
 }
