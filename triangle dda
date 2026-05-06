@@ -1,0 +1,51 @@
+//7 triangle using dda
+#include <graphics.h>
+#include <stdio.h>
+#include <math.h>
+#include <conio.h>
+
+// DDA Line Drawing Function
+void dda(int x1, int y1, int x2, int y2)
+{
+    float dx = x2 - x1;
+    float dy = y2 - y1;
+
+    int steps = (abs(dx) > abs(dy)) ? abs(dx) : abs(dy);
+
+    float x_inc = dx / steps;
+    float y_inc = dy / steps;
+
+    float x = x1;
+    float y = y1;
+
+    for(int i = 0; i <= steps; i++)
+    {
+        putpixel(round(x), round(y), WHITE);
+        x += x_inc;
+        y += y_inc;
+    }
+}
+
+int main()
+{
+    int gd = DETECT, gm;
+
+    initgraph(&gd, &gm, (char*)"");
+
+    // ?? Upward triangle vertices
+    int x1 = 250, y1 = 150;  // top (peak)
+    int x2 = 200, y2 = 300;  // bottom-left
+    int x3 = 300, y3 = 300;  // bottom-right
+
+    // Draw triangle
+    dda(x1, y1, x2, y2);
+    dda(x2, y2, x3, y3);
+    dda(x3, y3, x1, y1);
+
+    outtextxy(10,10,(char*)"Upward Triangle using DDA");
+
+    getch();
+    closegraph();
+
+    return 0;
+}
