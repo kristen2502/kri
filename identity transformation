@@ -1,0 +1,52 @@
+// identity transformation
+ #include <graphics.h>
+#include <conio.h>
+#include <iostream>
+
+using namespace std;
+
+int main()
+{
+    int gd = DETECT, gm;
+    initgraph(&gd, &gm, NULL);
+
+    // Number of vertices
+    int n = 4;
+
+    // Original polygon coordinates (rectangle)
+    int x[4] = {200, 300, 300, 200};
+    int y[4] = {200, 200, 300, 300};
+
+    // Arrays for transformed coordinates
+    int x_new[4], y_new[4];
+
+    cout << "Original Polygon Coordinates (Before Identity Transformation)\n";
+    for (int i = 0; i < n; i++)
+    {
+        cout << "Vertex " << i + 1 << ": (" << x[i] << ", " << y[i] << ")" << endl;
+    }
+
+    // Draw original polygon
+    setcolor(WHITE);
+    for (int i = 0; i < n; i++)
+    {
+        line(x[i], y[i], x[(i + 1) % n], y[(i + 1) % n]);
+    }
+
+    // Identity transformation
+    for (int i = 0; i < n; i++)
+    {
+        x_new[i] = x[i]; // x' = x
+        y_new[i] = y[i]; // y' = y
+    }
+
+    cout << "\nAfter Identity Transformation\n";
+    for (int i = 0; i < n; i++)
+    {
+        cout << "Vertex " << i + 1 << ": (" << x_new[i] << ", " << y_new[i] << ")" << endl;
+    }
+
+    getch();
+    closegraph();
+    return 0;
+}
